@@ -2,6 +2,13 @@ FROM maven:3.5.2-jdk-8-alpine AS MAVEN_TOOL_CHAIN
 	
 RUN apk add --update openssl
 
+
+RUN apk add libstdc++
+
+ENV LANG       en_US.UTF-8
+ENV LC_ALL     en_US.UTF-8
+ENV LANGUAGE   en_US:en
+
 # Pre build commands
 USER root
 RUN wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/backend-project/springboot/maven/2.x/pre-build.sh
