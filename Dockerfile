@@ -1,8 +1,4 @@
 FROM maven:3.5.2-jdk-8-alpine AS MAVEN_TOOL_CHAIN
-
-environment:
-    - "LANG=en_US.UTF-8"
-    - "LANGUAGE=en_US.UTF-8"
 	
 RUN apk add --update openssl
 
