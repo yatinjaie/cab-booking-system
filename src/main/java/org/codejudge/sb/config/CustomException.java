@@ -3,7 +3,7 @@ package org.codejudge.sb.config;
 import org.springframework.stereotype.Component;
 
 /**
- * * @description It is use for throw custom exceptions
+ * @description It is use for throw custom exceptions
  *
  */
 @Component

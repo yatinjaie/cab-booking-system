@@ -10,6 +10,11 @@ import com.mongodb.MongoClient;
 
 import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
 
+/**
+ *
+ * @author yatinjaie
+ *
+ */
 @Configuration
 public class MongoConfig {
 	private static final String MONGO_DB_URL = "localhost";
