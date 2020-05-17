@@ -24,33 +24,33 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
 
 
-	@ExceptionHandler(value = MongoWriteException.class)
-	public Map<String, Object> mongoWriteException(Exception ex, HttpServletResponse response) {
-		log.error(ex.getLocalizedMessage(), ex);
-		return setStatusAndMessage(HttpStatus.BAD_REQUEST.value(), HttpStatus.INTERNAL_SERVER_ERROR.name(),
-				ex.getLocalizedMessage(), response);
-	}
+    @ExceptionHandler(value = MongoWriteException.class)
+    public Map<String, Object> mongoWriteException(Exception ex, HttpServletResponse response) {
+        log.error(ex.getLocalizedMessage(), ex);
+        return setStatusAndMessage(HttpStatus.BAD_REQUEST.value(),
+                ex.getLocalizedMessage(), response);
+    }
 
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, Object> validationException(MethodArgumentNotValidException ex, HttpServletResponse response) {
-		log.error(ex.getLocalizedMessage(), ex);
-		return setStatusAndMessage(HttpStatus.BAD_REQUEST.value(), HttpStatus.INTERNAL_SERVER_ERROR.name(),
-				ex.getBindingResult().getAllErrors().get(0).getDefaultMessage(), response);
-	}
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, Object> validationException(MethodArgumentNotValidException ex, HttpServletResponse response) {
+        log.error(ex.getLocalizedMessage(), ex);
+        return setStatusAndMessage(HttpStatus.BAD_REQUEST.value(),
+                ex.getBindingResult().getAllErrors().get(0).getDefaultMessage(), response);
+    }
 
-	@ExceptionHandler(value = Exception.class)
-	public Map<String, Object> exception(Exception ex, HttpServletResponse response) {
-		log.error(ex.getLocalizedMessage(), ex);
-		return setStatusAndMessage(HttpStatus.BAD_REQUEST.value(), HttpStatus.INTERNAL_SERVER_ERROR.name(),
-				ex.getLocalizedMessage(), response);
-	}
+    @ExceptionHandler(value = Exception.class)
+    public Map<String, Object> exception(Exception ex, HttpServletResponse response) {
+        log.error(ex.getLocalizedMessage(), ex);
+        return setStatusAndMessage(HttpStatus.BAD_REQUEST.value(),
+                ex.getLocalizedMessage(), response);
+    }
 
-	private Map<String, Object> setStatusAndMessage(int status, String error, String message,
-			HttpServletResponse response) {
-		Map<String, Object> reponseMap = new HashMap<>();
-		response.setStatus(status);
-		reponseMap.put("status", "failure");
-		reponseMap.put("reason", message);
-		return reponseMap;
-	}
+    private Map<String, Object> setStatusAndMessage(int status, String message,
+            HttpServletResponse response) {
+        Map<String, Object> reponseMap = new HashMap<>();
+        response.setStatus(status);
+        reponseMap.put("status", "failure");
+        reponseMap.put("reason", message);
+        return reponseMap;
+    }
 }

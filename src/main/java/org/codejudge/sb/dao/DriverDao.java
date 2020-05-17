@@ -2,8 +2,6 @@ package org.codejudge.sb.dao;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.codejudge.sb.model.Driver;
 import org.codejudge.sb.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +36,12 @@ public class DriverDao {
 	 * @param location
 	 * @return
 	 */
-	public boolean updateDriverLocation(String id, @Valid Location location) {
+	public boolean updateDriverLocation(String id, Location location) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("id").is(id));
 		final Update update = new Update();
-		Double[] arr = new Double[] { location.getLatitude(), location.getLongitude() };
-		update.set("location", arr);
+		//		Double[] arr = new Double[] { location.getLatitude(), location.getLongitude() };
+		update.set("location", location);
 		final UpdateResult updateRes = mongoTemplate.updateFirst(query, update, Driver.class);
 		return updateRes.wasAcknowledged();
 	}
@@ -62,6 +60,10 @@ public class DriverDao {
 		query.fields().include("phoneNumber");
 		query.fields().include("carNumber");
 		return mongoTemplate.find(query, Driver.class);
+	}
+
+	public List<Driver> findAll() {
+		return mongoTemplate.findAll(Driver.class);
 	}
 
 }

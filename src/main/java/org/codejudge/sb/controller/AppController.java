@@ -68,14 +68,13 @@ public class AppController {
 	@ApiOperation("This is an api to gert available cars")
 	@PostMapping("/api/v1/passenger/available_cabs/")
 	public ResponseEntity<Object> add(@RequestBody @Valid Location location) {
-		log.info("location : " + location);
-
 		List<Driver> list = driverService.getAvailableCars(location);
 		Map<String,Object> map = new HashMap<>();
-		if(list.isEmpty())
+		if (list.isEmpty()) {
 			map.put("message", "No cabs available!");
-		else
+		} else {
 			map.put("available_cabs", list);
+		}
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
