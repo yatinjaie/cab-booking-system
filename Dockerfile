@@ -1,4 +1,4 @@
-FROM maven:3.5.2-jdk-8-alpine AS MAVEN_TOOL_CHAIN
+FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_TOOL_CHAIN
 	
 RUN apk add --update openssl
 
