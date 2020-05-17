@@ -3,11 +3,13 @@ FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_TOOL_CHAIN
 RUN apk add --update openssl
 
 
-RUN apk add libstdc++
-
+WORKDIR /build-env
+ADD . /build-env
+RUN apk update &&  apk add bash && apk add libstdc++
+ENV LC_ALL=C
 ENV LANG       en_US.UTF-8
-ENV LC_ALL     en_US.UTF-8
 ENV LANGUAGE   en_US:en
+
 
 # Pre build commands
 USER root
