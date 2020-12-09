@@ -1,4 +1,6 @@
-# Spring Boot Maven
+# Cab Booking System
+
+A low level design for a cab booking system.
 
 PROJECT START STEPS:
 
